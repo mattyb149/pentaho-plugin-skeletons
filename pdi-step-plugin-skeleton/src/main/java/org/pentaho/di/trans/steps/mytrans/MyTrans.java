@@ -37,7 +37,6 @@ import org.pentaho.di.trans.step.StepMetaInterface;
  * Describe your step plugin.
  * 
  */
-@Step(id = "MyStepId", image = "MyStepIcon.png", name = "My Step Name")
 public class MyTrans extends BaseStep implements StepInterface
 {
 	private static Class<?> PKG = MyTransMeta.class; // for i18n purposes, needed by Translator2!!   $NON-NLS-1$
@@ -60,7 +59,7 @@ public class MyTrans extends BaseStep implements StepInterface
 
         if (checkFeedback(getLinesRead())) 
         {
-        	if(log.isBasic()) logBasic(BaseMessages.getString(PKG, "DummyTrans.Log.LineNumber")+getLinesRead()); 
+        	if(log.isBasic()) logBasic(BaseMessages.getString(PKG, "MyTrans.Log.LineNumber")+getLinesRead()); 
         }
 			
 		return true;

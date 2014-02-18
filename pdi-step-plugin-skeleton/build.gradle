@@ -1,5 +1,6 @@
 apply plugin: 'java'
 apply plugin: 'eclipse'
+apply plugin: 'idea'
 
 // Keep Java source compatibility at 1.6 unless you absolutely need 7+ features, as this will 
 // ensure maximum supportability and compatibility for your plugin.
@@ -15,6 +16,7 @@ project.ext.metastore_dependency_revision = 'TRUNK-SNAPSHOT'
 // kept in GitHub at pentaho/subfloor/master-copies/ivysettings.xml, but if we move to Maven
 // you will want to see the common POM.
 project.repositories {
+  mavenLocal()
   ivy {
     url "http://repo.pentaho.org/artifactory/repo/"
     layout  "pattern", {
@@ -53,6 +55,10 @@ dependencies {
   //runtimeWithoutCompile("com.tinkerpop.blueprints:blueprints-core:${project.ext.blueprints_dependency_revision}")
   //runtimeWithoutCompile('com.fasterxml.jackson.core:jackson-core:2.1.2')
   
+  // Put JARs that you can't resolve in the lib-dist folder. Probably better to deploy to local Maven but this is here just in case :)
+  compile fileTree(dir: 'lib-dist', include: '*.jar')
+  runtimeWithoutCompile fileTree(dir: 'lib-dist', include: '*.jar')
+  
 }
 
 // This task builds a PDI plugin in the correct format, a ZIP with the plugin JAR at the root and a lib/ folder containing
@@ -60,6 +66,9 @@ dependencies {
 task plugin(dependsOn:jar, type: Zip) {
   into("${project.name}/") {
     from jar.outputs.files
+    
+    // Things like version.xml and files that can't be in the actual plugin JAR should be put into package-res
+    from fileTree(dir: 'package-res')
   }
   
   // The list of JARs in the lib/ folder is the complement of the intersection of the compile and runtime dependencies,

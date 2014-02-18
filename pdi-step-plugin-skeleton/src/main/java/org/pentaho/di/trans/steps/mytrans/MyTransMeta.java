@@ -26,6 +26,7 @@ import java.util.List;
 
 import org.pentaho.di.core.CheckResult;
 import org.pentaho.di.core.CheckResultInterface;
+import org.pentaho.di.core.annotations.Step;
 import org.pentaho.di.core.database.DatabaseMeta;
 import org.pentaho.di.core.exception.KettleException;
 import org.pentaho.di.core.exception.KettleStepException;
@@ -47,11 +48,12 @@ import org.w3c.dom.Node;
 
 
 
-/*
- * Created on 02-jun-2003
+/**
+ * @author
  *
  */
-
+@Step(id = "MyStepId", image = "MyStepIcon.png", name = "My Step Name",
+          description = "Write to memcached instance", categoryDescription = "Output" )
 public class MyTransMeta extends BaseStepMeta implements StepMetaInterface
 {
 	private static Class<?> PKG = MyTransMeta.class; // for i18n purposes, needed by Translator2!!   $NON-NLS-1$
@@ -98,24 +100,24 @@ public class MyTransMeta extends BaseStepMeta implements StepMetaInterface
 		CheckResult cr;
 		if (prev==null || prev.size()==0)
 		{
-			cr = new CheckResult(CheckResultInterface.TYPE_RESULT_WARNING, BaseMessages.getString(PKG, "DummyTransMeta.CheckResult.NotReceivingFields"), stepMeta); 
+			cr = new CheckResult(CheckResultInterface.TYPE_RESULT_WARNING, BaseMessages.getString(PKG, "MyTransMeta.CheckResult.NotReceivingFields"), stepMeta); 
 			remarks.add(cr);
 		}
 		else
 		{
-			cr = new CheckResult(CheckResultInterface.TYPE_RESULT_OK, BaseMessages.getString(PKG, "DummyTransMeta.CheckResult.StepRecevingData",prev.size()+""), stepMeta);  
+			cr = new CheckResult(CheckResultInterface.TYPE_RESULT_OK, BaseMessages.getString(PKG, "MyTransMeta.CheckResult.StepRecevingData",prev.size()+""), stepMeta);  
 			remarks.add(cr);
 		}
 		
 		// See if we have input streams leading to this step!
 		if (input.length>0)
 		{
-			cr = new CheckResult(CheckResultInterface.TYPE_RESULT_OK, BaseMessages.getString(PKG, "DummyTransMeta.CheckResult.StepRecevingData2"), stepMeta); 
+			cr = new CheckResult(CheckResultInterface.TYPE_RESULT_OK, BaseMessages.getString(PKG, "MyTransMeta.CheckResult.StepRecevingData2"), stepMeta); 
 			remarks.add(cr);
 		}
 		else
 		{
-			cr = new CheckResult(CheckResultInterface.TYPE_RESULT_ERROR, BaseMessages.getString(PKG, "DummyTransMeta.CheckResult.NoInputReceivedFromOtherSteps"), stepMeta); 
+			cr = new CheckResult(CheckResultInterface.TYPE_RESULT_ERROR, BaseMessages.getString(PKG, "MyTransMeta.CheckResult.NoInputReceivedFromOtherSteps"), stepMeta); 
 			remarks.add(cr);
 		}
 	}
