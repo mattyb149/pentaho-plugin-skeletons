@@ -1,0 +1,8 @@
+<features xmlns="http://karaf.apache.org/xmlns/features/v1.0.0">
+
+  <feature name="pentaho-database-plugin" version="1.0">
+    <feature>pentaho-metaverse</feature>
+    <bundle>mvn:org.pentaho.community/pentaho-database-plugin/1.0-SNAPSHOT</bundle>
+  </feature>
+
+</features>
