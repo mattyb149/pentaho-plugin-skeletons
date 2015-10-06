@@ -18,6 +18,7 @@
  */
 package org.pentaho.community.di.plugins.database.mydatabase;
 
+import org.pentaho.community.di.plugins.database.mydatabase.delegate.DelegateDriver;
 import org.pentaho.di.core.Const;
 import org.pentaho.di.core.database.BaseDatabaseMeta;
 import org.pentaho.di.core.database.DatabaseInterface;
@@ -43,7 +44,7 @@ public class MyDatabaseMeta extends BaseDatabaseMeta implements DatabaseInterfac
 
   public static final String SCHEME = "mydb";
 
-
+  public static final int DEFAULT_PORT = -1;
 
   @Override
   public int[] getAccessTypeList() {
@@ -52,13 +53,12 @@ public class MyDatabaseMeta extends BaseDatabaseMeta implements DatabaseInterfac
 
   @Override
   public int getDefaultDatabasePort() {
-    return -1;
+    return DEFAULT_PORT;
   }
 
   @Override
   public String getDriverClass() {
-    return "org.pentaho.di.plugins.database.DelegateDriver";
-
+    return DelegateDriver.class.getCanonicalName();
   }
 
   @Override
