@@ -62,7 +62,19 @@ public class DelegateDriver implements Driver {
    */
   @Override
   public Connection connect( String url, Properties info ) throws SQLException {
-    return new DelegateConnection( realDriver.connect( url, info ) );
+    try {
+      Connection realConnection = realDriver.connect( url, info );
+      if ( realConnection == null ) {
+        return null;
+      } else {
+        return new DelegateConnection( realConnection );
+      }
+    } catch ( SQLException se ) {
+      throw se;
+    } catch ( Throwable t ) {
+      // will return null per JDBC spec
+    }
+    return null;
   }
 
   /**

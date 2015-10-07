@@ -47,7 +47,7 @@
     </repositories>
 
     <properties>
-        <dependency.pentaho-kettle.kettle-core.version>6.0-SNAPSHOT</dependency.pentaho-kettle.kettle-core.version>
+        <dependency.pentaho-kettle.kettle-core.version>6.1-SNAPSHOT</dependency.pentaho-kettle.kettle-core.version>
         <!-- Plugin dependencies -->
         <target.jdk.version>1.7</target.jdk.version>
         <plugin.maven-bundle-plugin.version>2.3.7</plugin.maven-bundle-plugin.version>
