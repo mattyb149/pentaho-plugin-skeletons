@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<archetype-descriptor xsi:schemaLocation="http://maven.apache.org/plugins/maven-archetype-plugin/archetype-descriptor/1.0.0 http://maven.apache.org/xsd/archetype-descriptor-1.0.0.xsd" name="pentaho-database-plugin"
+    xmlns="http://maven.apache.org/plugins/maven-archetype-plugin/archetype-descriptor/1.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <requiredProperties>
+    <requiredProperty key="driver_groupId"></requiredProperty>
+    <requiredProperty key="driver_artifactId"></requiredProperty>
+    <requiredProperty key="driver_version"></requiredProperty>
+    <requiredProperty key="jdbc_default_port"></requiredProperty>
+    <requiredProperty key="jdbc_url_scheme"></requiredProperty>
+    <requiredProperty key="database_meta_class_name"></requiredProperty>
+    <requiredProperty key="fully_qualified_class_for_real_driver"></requiredProperty>
+  </requiredProperties>
+  <fileSets>
+    <fileSet filtered="true" packaged="true" encoding="UTF-8">
+      <directory>src/main/java</directory>
+      <includes>
+        <include>**/*.java</include>
+      </includes>
+    </fileSet>
+    <fileSet filtered="true" encoding="UTF-8">
+      <directory>src/main/resources</directory>
+      <includes>
+        <include>**/*.xml</include>
+      </includes>
+    </fileSet>
+    <fileSet encoding="UTF-8">
+      <directory></directory>
+      <includes>
+        <include>.gitignore</include>
+        <include>README.md</include>
+      </includes>
+      <excludes>
+        <exclude>pentaho-database-plugin.iml</exclude>
+      </excludes>
+    </fileSet>
+  </fileSets>
+</archetype-descriptor>
