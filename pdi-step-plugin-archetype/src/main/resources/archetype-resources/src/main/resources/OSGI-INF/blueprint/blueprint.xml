@@ -14,4 +14,16 @@
   </bean>
 
 
+  <!-- Define a bean for our new step analyzer -->
+  <bean id="${plugin_class_name}StepAnalyzer" class="${package}.${plugin_class_name}StepAnalyzer" />
+
+  <!--
+    Define our analyzer as a service. This will allow it to be automatically added to the reference-list ultimately used
+    by the TransformationAnalyzer to determine if there is a custom analyzer for a particular BaseStepMeta impl
+    (${plugin_class_name}Meta in this case).
+  -->
+  <service id="${plugin_class_name}StepAnalyzerService"
+           interface="org.pentaho.metaverse.api.analyzer.kettle.step.IStepAnalyzer"
+           ref="${plugin_class_name}StepAnalyzer"/>
+
 </blueprint>

@@ -48,6 +48,7 @@
 
     <properties>
         <dependency.pentaho-kettle.kettle-core.version>6.0-SNAPSHOT</dependency.pentaho-kettle.kettle-core.version>
+        <dependency.pentaho-metaverse-api>6.0-SNAPSHOT</dependency.pentaho-metaverse-api>
         <!-- Plugin dependencies -->
         <target.jdk.version>1.7</target.jdk.version>
         <plugin.maven-bundle-plugin.version>2.3.7</plugin.maven-bundle-plugin.version>
@@ -84,6 +85,14 @@
             <artifactId>guava</artifactId>
             <version>${guava.version}</version>
         </dependency>
+
+        <dependency>
+          <groupId>pentaho</groupId>
+          <artifactId>pentaho-metaverse-api</artifactId>
+          <version>${dependency.pentaho-metaverse-api}</version>
+          <type>bundle</type>
+        </dependency>
+
     </dependencies>
 
     <build>
