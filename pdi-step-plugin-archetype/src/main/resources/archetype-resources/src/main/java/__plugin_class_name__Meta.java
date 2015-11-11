@@ -53,7 +53,7 @@ import java.util.List;
 /**
  * Skeleton for PDI Step plugin.
  */
-@Step( id = "${plugin_class_name}", image = "${plugin_class_name}.png", name = "${plugin_name}",
+@Step( id = "${plugin_class_name}", image = "${plugin_class_name}.svg", name = "${plugin_name}",
     description = "${plugin_description}", categoryDescription = "${plugin_category}" )
 public class ${plugin_class_name}Meta extends BaseStepMeta implements StepMetaInterface {
   
@@ -124,4 +124,7 @@ public class ${plugin_class_name}Meta extends BaseStepMeta implements StepMetaIn
     return new ${plugin_class_name}Data();
   }
 
+  public String getDialogClassName() {
+    return "${package}.${plugin_class_name}Dialog";
+  }
 }
