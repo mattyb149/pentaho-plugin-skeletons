@@ -9,10 +9,33 @@
              http://www.osgi.org/xmlns/blueprint/v1.0.0 http://www.osgi.org/xmlns/blueprint/v1.0.0/blueprint.xsd
              http://www.pentaho.com/xml/schemas/pentaho-blueprint http://www.pentaho.com/xml/schemas/pentaho-blueprint.xsd">
 
-  <bean id="MyStep" class="${package}.${plugin_class_name}" scope="singleton">
-    <pen:di-plugin type="org.pentaho.di.core.plugins.StepPluginType"/>
-  </bean>
+    <bean id="${plugin_class_name}Meta" class="${package}.${plugin_class_name}Meta" scope="prototype"/>
+    <bean id="${plugin_class_name}Plugin" class="org.pentaho.di.osgi.OSGIPlugin" scope="prototype">
+        <property name="mainType" value="org.pentaho.di.trans.step.StepMetaInterface"/>
+        <property name="name" value="${plugin_name}"/>
+        <property name="ID" value="${plugin_class_name}"/>
+        <property name="imageFile" value="${plugin_class_name}.svg"/>
+        <property name="description" value="${plugin_description}"/>
+        <property name="pluginTypeInterface" value="org.pentaho.di.core.plugins.StepPluginType"/>
+        <property name="category" value="${plugin_category}"/>
+        <property name="classToBeanMap">
+            <map>
+                <entry key="org.pentaho.di.trans.step.StepMetaInterface" value="${plugin_class_name}Meta"/>
+            </map>
+        </property>
+    </bean>
+    <service id="${plugin_class_name}PluginService" interface="org.pentaho.di.core.plugins.PluginInterface" ref="${plugin_class_name}Plugin">
+        <service-properties>
+            <entry key="PluginType" value="org.pentaho.di.core.plugins.StepPluginType"/>
+        </service-properties>
+    </service>
+  <!--<bean id="${plugin_class_name}Data" class="${package}.${plugin_class_name}Data" scope="prototype"/>
 
+  <bean id="${plugin_class_name}Bean" class="${package}.${plugin_class_name}Meta" scope="prototype">
+    <pen:di-plugin type="org.pentaho.di.core.plugins.StepPluginType">
+    	<pen:di-plugin-mapping class="org.pentaho.di.trans.step.StepDataInterface" ref="${plugin_class_name}Data"/>
+    </pen:di-plugin>
+  </bean>-->
 
   <!-- Define a bean for our new step analyzer -->
   <bean id="${plugin_class_name}StepAnalyzer" class="${package}.${plugin_class_name}StepAnalyzer" />
